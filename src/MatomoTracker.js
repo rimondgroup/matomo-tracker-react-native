@@ -55,10 +55,10 @@ class MatomoTracker {
    *
    * {Object} `userInfo` - Optional data used for tracking different user info, see https://developer.matomo.org/api-reference/tracking-api#optional-user-info.
    */
-  trackScreenView({ name, userInfo = {} }) {
+  trackScreenView({ name, userInfo = {}, url }) {
     if (!name) throw new Error('Error: name is required.');
 
-    return this.trackAction({ name: `Screen / ${name}`, userInfo });
+    return this.trackAction({ name: `Screen / ${name}`, userInfo, url });
   }
 
   /**
@@ -71,10 +71,10 @@ class MatomoTracker {
    *
    * {Object} `userInfo` - Optional data used for tracking different user info, see https://developer.matomo.org/api-reference/tracking-api#optional-user-info.
    */
-  trackAction({ name, userInfo = {} }) {
+  trackAction({ name, userInfo = {}, url }) {
     if (!name) throw new Error('Error: name is required.');
 
-    return this.track({ action_name: name, ...userInfo });
+    return this.track({ action_name: name,url:url, ...userInfo });
   }
 
   /**
